@@ -1,31 +1,31 @@
 {
     "token": "",
     "language": "en",
-    "prefix": "!",
-    "mongodbUri": "",
+    "prefix": "e",
+    "mongodbUri": "mongodb+srv://tca:tca@enzlewy.obwxx.mongodb.net/?retryWrites=true&w=majority",
     "geniusToken": "0CHr9jtPjR7EKraXUVv6__8ELmEwFeUwt5vYAhk-is_fGOq-10-epdMzESkMPUnf",
     "excessCommands": {
         "utility": true,
         "other": true,
-        "hentai": true,
+        "hentai": false,
         "lavalink": true,
         "troll": true
     },
     "categories": {
-        "anime": true,
+        "anime": false,
         "basic": true,
         "utility": true,
         "moderation": true,
         "fun": true,
-        "distube music": true,
+        "distube music": false,
         "setups": true
     },
      "lavalink": {
         "lavalink": {
-            "host": "lava.catfein.com",
-            "port": 4000,
-            "password": "catfein",
-            "secure": false
+            "host": "lava-v4.ajieblogs.eu.org",
+            "port": 443,
+            "password": "https://dsc.gg/ajidevserver",
+            "secure": true
         }
     }, 
     "spotifyClientId": "f71a3da30e254962965ca2a89d6f74b9",
