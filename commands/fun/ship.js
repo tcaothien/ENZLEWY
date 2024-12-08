@@ -4,7 +4,7 @@ const lang = require('../../events/loadLanguage');
 const { AttachmentBuilder } = require('discord.js');
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('ship')
+        .setName('love')
         .setDescription(lang.shipCommandDescription)
         .addUserOption(option =>
             option.setName('user1')
