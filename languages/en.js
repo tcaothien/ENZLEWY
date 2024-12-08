@@ -446,7 +446,7 @@ purgeMessagesOld: 'Không thể xóa tin nhắn hơn 14 ngày.',
 purgeUnknownMessageRef: 'Nội dung biểu mẫu không hợp lệ: Tham chiếu không xác định.',
 // removerole.js
 removeroleCommandDescription: 'Xóa role member',
-removeraleTargetDescription: 'The member to remove a role from',
+removeroleTargetDescription: 'The member to remove a role from',
 removeroleRoleDescription: 'The role to remove',
 removeroleNoPermission: 'Bạn không có quyền sử dụng lệnh này.',
 removeroleRoleNotFound: '${target.tag} không có role ${role.name}.',
