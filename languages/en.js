@@ -223,7 +223,7 @@ volumeAlertMessage: '- This command can only be used through slash command!\n- P
 // beautiful.js
 beautifulDescription: 'Apply a beautiful effect to a user\'s profile picture.',
 beautifulUserDescription: 'User whose profile picture to beautify',
-beautifulNoUser: 'Bạn phải chỉ định một người dùng!'',
+beautifulNoUser: 'Bạn phải chỉ định một người dùng!',
 beautifulTitle: 'Beautiful Effect',
 beautifulDescriptionText: '{user}\'s profile picture!',
 beautifulFooter: 'Beauty is in the eye of the beholder! ✨',
