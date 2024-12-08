@@ -435,13 +435,13 @@ module.exports = {
             });
            }   else {
                 const embed = new EmbedBuilder()
-                .setColor('#3498db')
+                .setColor('#ff0000')
                 .setAuthor({ 
                     name: "Alert!", 
                     iconURL: cmdIcons.dotIcon ,
                     url: "https://discord.gg/xQF9f9yUEM"
                 })
-                .setDescription('- This command can only be used through slash command!\n- Please use `/help`')
+                .setDescription('- Lệnh này chỉ có thể được sử dụng thông qua lệnh slash!\n- Vui lòng sử dụng `/help`')
                 .setTimestamp();
             
                 await interaction.reply({ embeds: [embed] });
