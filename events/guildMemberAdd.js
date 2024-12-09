@@ -71,22 +71,22 @@ module.exports = async (client) => {
                 const attachment = new AttachmentBuilder(card, { name: 'welcome.png' });
 
                 const embed = new EmbedBuilder()
-                    .setTitle("Chào mừng bạn đến với 𝙀𝙣𝙯𝙡𝙚𝙬𝙮. Hãy đọc kỹ <#1306241482448965675> nhá")
-                    .setDescription(`${member}! Bạn là thành viên thứ **${memberCount}${suffix}** của server!`)
+                    .setTitle("Hãy đọc kỹ <#1306241482448965675> nhá")
+                    .setDescription(`${member} là thành viên thứ **${memberCount}${suffix}** của server!`)
                     .setColor("#ff0000")
                     .setThumbnail(member.user.displayAvatarURL())
                     .setImage('attachment://welcome.png')
                     .addFields(
                         { name: 'Username', value: userName, inline: true },
-                        { name: 'Ngày Tham Gia', value: joinDate, inline: true },
-                        { name: 'Ngày tạo tài khoản', value: creationDate, inline: true }
+                        { name: 'Ngày Tham Gia Enzlewy', value: joinDate, inline: true },
+                        { name: 'Ngày Tạo Tài Khoản', value: creationDate, inline: true }
                     )
                     .setFooter({ text: "Chúng tớ rất vui khi có bạn ở đây!", iconURL: serverIcon })
                     .setAuthor({ name: serverName, iconURL: serverIcon })
                     .setTimestamp();
 
                 welcomeChannel.send({
-                    content: `Hellooooooo ${member}!`,
+                    content: `Chào Mừng ${member} Đến Với 𝙀𝙉𝙕𝙇𝙀𝙒𝙔 💫`,
                     embeds: [embed],
                     files: [attachment]
                 });
