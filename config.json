@@ -1,13 +1,13 @@
 {
     "token": "",
     "language": "en",
-    "prefix": "!",
-    "mongodbUri": "",
+    "prefix": "e",
+    "mongodbUri": "mongodb+srv://tca:tca@enzlewy.obwxx.mongodb.net/?retryWrites=true&w=majority",
     "geniusToken": "0CHr9jtPjR7EKraXUVv6__8ELmEwFeUwt5vYAhk-is_fGOq-10-epdMzESkMPUnf",
     "excessCommands": {
         "utility": true,
         "other": true,
-        "hentai": true,
+        "hentai": false,
         "lavalink": true,
         "troll": true
     },
@@ -17,14 +17,14 @@
         "utility": true,
         "moderation": true,
         "fun": true,
-        "distube music": true,
+        "distube music": false,
         "setups": true
     },
      "lavalink": {
         "lavalink": {
-            "host": "lava.catfein.com",
-            "port": 4000,
-            "password": "catfein",
+            "host": "lava.inzeworld.com",
+            "port": 3128,
+            "password": "saher.inzeworld.com",
             "secure": false
         }
     }, 
