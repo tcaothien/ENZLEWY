@@ -64,29 +64,29 @@ module.exports = async (client) => {
                     .setName(userName)
                     .setAvatar(member.user.displayAvatarURL({ format: 'png' }))
                     .setTitle("Welcome to Server")
-                    .setColor("00e5ff") 
+                    .setColor("#ff0000") 
                     .setBackground(randomImage);
                 
                 const card = await welcomecard.build();
                 const attachment = new AttachmentBuilder(card, { name: 'welcome.png' });
 
                 const embed = new EmbedBuilder()
-                    .setTitle("Welcome to the Server!")
-                    .setDescription(`${member}! You are the **${memberCount}${suffix}** member of our server!`)
-                    .setColor("#00e5ff")
+                    .setTitle("Chào mừng bạn đến với 𝙀𝙣𝙯𝙡𝙚𝙬𝙮. Hãy đọc kỹ <#1306241482448965675> nhá")
+                    .setDescription(`${member}! Bạn là thành viên thứ **${memberCount}${suffix}** của server!`)
+                    .setColor("#ff0000")
                     .setThumbnail(member.user.displayAvatarURL())
                     .setImage('attachment://welcome.png')
                     .addFields(
                         { name: 'Username', value: userName, inline: true },
-                        { name: 'Join Date', value: joinDate, inline: true },
-                        { name: 'Account Created', value: creationDate, inline: true }
+                        { name: 'Ngày Tham Gia', value: joinDate, inline: true },
+                        { name: 'Ngày tạo tài khoản', value: creationDate, inline: true }
                     )
-                    .setFooter({ text: "We're glad to have you here!", iconURL: serverIcon })
+                    .setFooter({ text: "Chúng tớ rất vui khi có bạn ở đây!", iconURL: serverIcon })
                     .setAuthor({ name: serverName, iconURL: serverIcon })
                     .setTimestamp();
 
                 welcomeChannel.send({
-                    content: `Hey ${member}!`,
+                    content: `Hellooooooo ${member}!`,
                     embeds: [embed],
                     files: [attachment]
                 });
