@@ -4,7 +4,7 @@ const lang = require('../../events/loadLanguage');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('userinfo')
+        .setName('user')
         .setDescription(lang.userinfoDescription)
         .addUserOption(option => 
             option.setName('target')
