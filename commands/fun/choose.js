@@ -4,7 +4,7 @@ const lang = require('../../events/loadLanguage');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('choose')
+        .setName('pick')
         .setDescription(lang.chooseDescription)
         .addStringOption(option =>
             option.setName('options')
