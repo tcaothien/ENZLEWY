@@ -59,12 +59,12 @@ async function monitorConfigChanges(client) {
                         .setAuthor({
                             name: "Welcome to Ticket Support",
                             iconURL: ticketIcons.mainIcon,
-                            url: "https://discord.gg/xQF9f9yUEM"
+                            url: "https://discord.gg/enzlewy"
                         })
-                        .setDescription('- Please click below menu to create a new ticket.\n\n' +
+                        .setDescription('- Vui lòng nhấp vào menu bên dưới để tạo ticket.\n\n' +
                             '**Ticket Guidelines:**\n' +
-                            '- Empty tickets are not permitted.\n' +
-                            '- Please be patient while waiting for a response from our support team.')
+                            '- Tụi mình sẽ trả lời hỗ trợ của bạn trong thời gian sớm nhất.\n' +
+                            '- Vui lòng không tạo ticket khi không có việc gì nếu không bạn sẽ bị mute & ban.')
                         .setFooter({ text: 'We are here to Help!', iconURL: ticketIcons.modIcon })
                         .setColor('#00FF00')
                         .setTimestamp();
