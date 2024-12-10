@@ -66,7 +66,7 @@ async function monitorConfigChanges(client) {
                             '- Tụi mình sẽ trả lời hỗ trợ của bạn trong thời gian sớm nhất.\n' +
                             '- Vui lòng không tạo ticket khi không có việc gì nếu không bạn sẽ bị mute & ban.')
                         .setFooter({ text: 'We are here to Help!', iconURL: ticketIcons.modIcon })
-                        .setColor('#00FF00')
+                        .setColor('#ff0000')
                         .setTimestamp();
 
                     const menu = new StringSelectMenuBuilder()
@@ -74,7 +74,7 @@ async function monitorConfigChanges(client) {
                         .setPlaceholder('Choose ticket type')
                         .addOptions([
                             { label: '🆘 Support', value: 'support' },
-                            { label: '📂 Suggestion', value: 'suggestion' },
+                           
                             { label: '💜 Feedback', value: 'feedback' },
                             { label: '⚠️ Report', value: 'report' }
                         ]);
@@ -138,9 +138,9 @@ async function handleSelectMenu(interaction, client) {
             iconURL: ticketIcons.modIcon,
             url: "https://discord.gg/enzlewy"
         })
-        .setDescription(`Hello ${user}, welcome to our support!\n- Please provide a detailed description of your issue\n- Our support team will assist you as soon as possible.\n- Feel free to open another ticket if this was closed.`)
+        .setDescription(`Helloooo ${user}, welcome to our support!\n- Support sẽ hỗ trợ bạn sớm nhất có thể.\n- Chỉ có thể mở ticket mới khi ticket này đã được đóng.`)
         .setFooter({ text: 'Your satisfaction is our priority', iconURL: ticketIcons.heartIcon })
-        .setColor('#00FF00')
+        .setColor('#ff0000')
         .setTimestamp();
 
     const closeButton = new ButtonBuilder()
@@ -157,9 +157,9 @@ async function handleSelectMenu(interaction, client) {
         .setAuthor({ 
             name: "Ticket Created!", 
             iconURL: ticketIcons.correctIcon,
-            url: "https://discord.gg/xQF9f9yUEM"
+            url: "https://discord.gg/enzlewy"
         })
-        .setDescription(`- Your ${ticketType} ticket has been created.`)
+        .setDescription(`- Đã tạo ${ticketType} ticket thành công.`)
         .addFields(
             { name: 'Ticket Channel', value: `${ticketChannel.url}` },
             { name: 'Instructions', value: 'Please describe your issue in detail.' }
@@ -200,9 +200,9 @@ async function handleCloseButton(interaction, client) {
             .setAuthor({ 
                 name: "Ticket closed!", 
                 iconURL: ticketIcons.correctrIcon,
-                url: "https://discord.gg/xQF9f9yUEM"
+                url: "https://discord.gg/Enzlewy"
             })
-            .setDescription(`- Your ticket has been closed.`)
+            .setDescription(`- ticket của bạn đã được đóng.`)
             .setTimestamp()
             .setFooter({ text: 'Thank you for reaching out!', iconURL: ticketIcons.modIcon });
 
