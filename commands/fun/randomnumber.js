@@ -3,7 +3,7 @@ const lang = require('../../events/loadLanguage'); // Adjust the path as needed
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('randomnum')
+        .setName('rd')
         .setDescription(lang.randomnumCommandDescription)
         .addIntegerOption(option =>
             option.setName('min')
