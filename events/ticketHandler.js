@@ -135,7 +135,7 @@ async function handleSelectMenu(interaction, client) {
         .setAuthor({
             name: "Support Ticket",
             iconURL: ticketIcons.modIcon,
-            url: "https://discord.gg/xQF9f9yUEM"
+            url: "https://discord.gg/enzlewy"
         })
         .setDescription(`Hello ${user}, welcome to our support!\n- Please provide a detailed description of your issue\n- Our support team will assist you as soon as possible.\n- Feel free to open another ticket if this was closed.`)
         .setFooter({ text: 'Your satisfaction is our priority', iconURL: ticketIcons.heartIcon })
