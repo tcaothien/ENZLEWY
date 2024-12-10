@@ -3,7 +3,7 @@ const lang = require('../../events/loadLanguage');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('avatar')
+        .setName('av')
         .setDescription(lang.avatarDescription)
         .addUserOption(option => 
             option.setName('user')
