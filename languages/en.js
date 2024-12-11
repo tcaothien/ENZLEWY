@@ -29,13 +29,6 @@ downloadJpeg: "▶️ Download JPEG",
     inviteTitle: "Invite Link",
     inviteDescription: "Click [here]({inviteURL}) to invite the bot to your server!",
     inviteImageURL: "https://cdn.discordapp.com/attachments/1246408947708072027/1256597293323256000/invite.png?ex=668158ed&is=6680076d&hm=030c83f567ffdaf0bebb95e50baaec8bb8a8394fa1b7717cc43c3622447f58e3&",
-    //marry.js
-    marryDescription: "Kết hôn với một người đặc biệt trong server!",
-    marrySuccess: "💍 {user1} đã kết hôn thành công với {user2}!",
-    marrySelfError: "Bạn không thể tự kết hôn với chính mình!",
-    marryAlreadyMarried: "Có vẻ như {user1} và {user2} đã kết hôn trước đó!",
-    marryRejected: "{user2} đã từ chối lời cầu hôn. 💔",
-    marryNoResponse: "{user2} đã không trả lời lời cầu hôn kịp thời.",
     //ping.js
     pingDescription: "Ping!",
     pingTitle: "Pong! 🏓",
