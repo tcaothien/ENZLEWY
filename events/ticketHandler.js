@@ -16,7 +16,7 @@ async function loadConfig() {
             return acc;
         }, {});
     } catch (err) {
-        //console.error('Error loading config from MongoDB:', err);
+        //console.error('Lỗi khi tải cấu hình từ MongoDB:', err);
     }
 }
 
@@ -54,29 +54,28 @@ async function monitorConfigChanges(client) {
                     const ticketChannel = guild.channels.cache.get(settings.ticketChannelId);
                     if (!ticketChannel) continue;
 
-          
                     const embed = new EmbedBuilder()
                         .setAuthor({
-                            name: "Welcome to Ticket Support",
+                            name: "Chào mừng đến với Hỗ Trợ Ticket",
                             iconURL: ticketIcons.mainIcon,
-                            url: "https://discord.gg/enzlewy"
+                            url: "https://discord.gg/xQF9f9yUEM"
                         })
-                        .setDescription('- Vui lòng nhấp vào menu bên dưới để tạo ticket.\n\n' +
-                            '**Ticket Guidelines:**\n' +
-                            '- Tụi mình sẽ trả lời hỗ trợ của bạn trong thời gian sớm nhất.\n' +
-                            '- Vui lòng không tạo ticket khi không có việc gì nếu không bạn sẽ bị mute & ban.')
-                        .setFooter({ text: 'We are here to Help!', iconURL: ticketIcons.modIcon })
-                        .setColor('#ff0000')
+                        .setDescription('- Vui lòng chọn loại ticket từ menu bên dưới để tạo ticket mới.\n\n' +
+                            '**Hướng Dẫn Tạo Ticket:**\n' +
+                            '- Không tạo ticket trống.\n' +
+                            '- Hãy kiên nhẫn chờ phản hồi từ đội ngũ hỗ trợ.')
+                        .setFooter({ text: 'Chúng tôi luôn sẵn sàng giúp đỡ!', iconURL: ticketIcons.modIcon })
+                        .setColor('#00FF00')
                         .setTimestamp();
 
                     const menu = new StringSelectMenuBuilder()
                         .setCustomId('select_ticket_type')
-                        .setPlaceholder('Choose ticket type')
+                        .setPlaceholder('Chọn loại ticket')
                         .addOptions([
-                            { label: '🆘 Support', value: 'support' },
-                           
-                            { label: '💜 Feedback', value: 'feedback' },
-                            { label: '⚠️ Report', value: 'report' }
+                            { label: '🆘 Hỗ Trợ', value: 'support' },
+                            { label: '📂 Gợi Ý', value: 'suggestion' },
+                            { label: '💜 Phản Hồi', value: 'feedback' },
+                            { label: '⚠️ Báo Cáo', value: 'report' }
                         ]);
 
                     const row = new ActionRowBuilder().addComponents(menu);
@@ -94,7 +93,7 @@ async function monitorConfigChanges(client) {
 }
 
 async function handleSelectMenu(interaction, client) {
-    await interaction.deferReply({ ephemeral: true }); 
+    await interaction.deferReply({ ephemeral: true });
 
     const { guild, user, values } = interaction;
     if (!guild || !user) return;
@@ -107,7 +106,7 @@ async function handleSelectMenu(interaction, client) {
 
     const ticketExists = await ticketsCollection.findOne({ guildId, userId });
     if (ticketExists) {
-        return interaction.followUp({ content: 'You already have an open ticket.', ephemeral: true });
+        return interaction.followUp({ content: 'Bạn đã có một ticket đang mở.', ephemeral: true });
     }
 
     const ticketChannel = await guild.channels.create({
@@ -134,18 +133,18 @@ async function handleSelectMenu(interaction, client) {
 
     const ticketEmbed = new EmbedBuilder()
         .setAuthor({
-            name: "Support Ticket",
+            name: "Ticket Hỗ Trợ",
             iconURL: ticketIcons.modIcon,
-            url: "https://discord.gg/enzlewy"
+            url: "https://discord.gg/xQF9f9yUEM"
         })
-        .setDescription(`Helloooo ${user}, welcome to our support!\n- Support sẽ hỗ trợ bạn sớm nhất có thể.\n- Chỉ có thể mở ticket mới khi ticket này đã được đóng.`)
-        .setFooter({ text: 'Your satisfaction is our priority', iconURL: ticketIcons.heartIcon })
-        .setColor('#ff0000')
+        .setDescription(`Xin chào ${user}, chào mừng bạn đến với kênh hỗ trợ!\n- Vui lòng cung cấp mô tả chi tiết về vấn đề của bạn.\n- Đội ngũ hỗ trợ sẽ giúp bạn sớm nhất có thể.\n- Bạn có thể tạo thêm ticket nếu cần.`)
+        .setFooter({ text: 'Sự hài lòng của bạn là ưu tiên của chúng tôi', iconURL: ticketIcons.heartIcon })
+        .setColor('#00FF00')
         .setTimestamp();
 
     const closeButton = new ButtonBuilder()
         .setCustomId(`close_ticket_${ticketId}`)
-        .setLabel('Close Ticket')
+        .setLabel('Đóng Ticket')
         .setStyle(ButtonStyle.Danger);
 
     const actionRow = new ActionRowBuilder().addComponents(closeButton);
@@ -155,21 +154,21 @@ async function handleSelectMenu(interaction, client) {
     const embed = new EmbedBuilder()
         .setColor(0x0099ff)
         .setAuthor({ 
-            name: "Ticket Created!", 
+            name: "Ticket Đã Được Tạo!", 
             iconURL: ticketIcons.correctIcon,
-            url: "https://discord.gg/enzlewy"
+            url: "https://discord.gg/xQF9f9yUEM"
         })
-        .setDescription(`- Đã tạo ${ticketType} ticket thành công.`)
+        .setDescription(`- Ticket loại **${ticketType}** của bạn đã được tạo thành công.`)
         .addFields(
-            { name: 'Ticket Channel', value: `${ticketChannel.url}` },
-            { name: 'Instructions', value: 'Please describe your issue in detail.' }
+            { name: 'Kênh Ticket', value: `${ticketChannel.url}` },
+            { name: 'Hướng Dẫn', value: 'Vui lòng mô tả vấn đề của bạn chi tiết.' }
         )
         .setTimestamp()
-        .setFooter({ text: 'Thank you for reaching out!', iconURL: ticketIcons.modIcon });
+        .setFooter({ text: 'Cảm ơn vì đã liên hệ!', iconURL: ticketIcons.modIcon });
 
-    await user.send({ content: `Your ${ticketType} ticket has been created`, embeds: [embed] });
+    await user.send({ content: `Ticket **${ticketType}** của bạn đã được tạo thành công.`, embeds: [embed] });
 
-    interaction.followUp({ content: 'Ticket created!', ephemeral: true });
+    interaction.followUp({ content: 'Ticket đã được tạo!', ephemeral: true });
 }
 
 async function handleCloseButton(interaction, client) {
@@ -181,7 +180,7 @@ async function handleCloseButton(interaction, client) {
 
     const ticket = await ticketsCollection.findOne({ id: ticketId });
     if (!ticket) {
-        return interaction.followUp({ content: 'Ticket not found. Please report to staff!', ephemeral: true });
+        return interaction.followUp({ content: 'Không tìm thấy ticket. Vui lòng báo cáo cho quản trị viên!', ephemeral: true });
     }
 
     const ticketChannel = guild.channels.cache.get(ticket.channelId);
@@ -198,16 +197,16 @@ async function handleCloseButton(interaction, client) {
         const embed = new EmbedBuilder()
             .setColor(0x0099ff)
             .setAuthor({ 
-                name: "Ticket closed!", 
-                iconURL: ticketIcons.correctrIcon,
-                url: "https://discord.gg/Enzlewy"
+                name: "Ticket Đã Đóng!", 
+                iconURL: ticketIcons.correctIcon,
+                url: "https://discord.gg/xQF9f9yUEM"
             })
-            .setDescription(`- ticket của bạn đã được đóng.`)
+            .setDescription(`- Ticket của bạn đã được đóng.`)
             .setTimestamp()
-            .setFooter({ text: 'Thank you for reaching out!', iconURL: ticketIcons.modIcon });
+            .setFooter({ text: 'Cảm ơn bạn đã liên hệ!', iconURL: ticketIcons.modIcon });
 
-        await ticketUser.send({ content: `Your ticket has been closed.`, embeds: [embed] });
+        await ticketUser.send({ content: `Ticket của bạn đã được đóng.`, embeds: [embed] });
     }
 
-    interaction.followUp({ content: 'Ticket closed and user notified.', ephemeral: true });
+    interaction.followUp({ content: 'Ticket đã được đóng và người dùng đã được thông báo.', ephemeral: true });
 }
