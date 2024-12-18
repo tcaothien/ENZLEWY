@@ -57,13 +57,13 @@ async function monitorConfigChanges(client) {
           
                     const embed = new EmbedBuilder()
                         .setAuthor({
-                            name: "Chào mừng đến với hệ thống hỗ trợ Ticket",
+                            name: "Chào mừng đến với Ticket",
                             iconURL: ticketIcons.mainIcon,
-                            url: "https://discord.gg/xQF9f9yUEM"
+                            url: "https://discord.gg/enzlewy"
                         })
                         .setDescription('- Vui lòng chọn từ menu bên dưới để tạo ticket mới.\n\n' +
                             '**Hướng dẫn sử dụng ticket:**\n' +
-                            '- Không tạo ticket trống.\n' +
+                            '- Không tạo ticket cho vui.\n' +
                             '- Vui lòng kiên nhẫn chờ phản hồi từ đội ngũ hỗ trợ.')
                         .setFooter({ text: 'Chúng tôi luôn sẵn sàng hỗ trợ!', iconURL: ticketIcons.modIcon })
                         .setColor('#00FF00')
@@ -136,9 +136,9 @@ async function handleSelectMenu(interaction, client) {
         .setAuthor({
             name: "Ticket Hỗ Trợ",
             iconURL: ticketIcons.modIcon,
-            url: "https://discord.gg/xQF9f9yUEM"
+            url: "https://discord.gg/enzlewy"
         })
-        .setDescription(`Xin chào ${user}, chào mừng bạn đến với hệ thống hỗ trợ!\n- Vui lòng cung cấp mô tả chi tiết về vấn đề của bạn.\n- Đội ngũ hỗ trợ sẽ phản hồi sớm nhất có thể.\n- Bạn có thể tạo thêm ticket nếu cần.`)
+        .setDescription(`Xin chào ${user}, chào mừng bạn đến với hỗ trợ của Enzlewy !\n- Vui lòng cung cấp mô tả chi tiết về vấn đề của bạn.\n- Đội ngũ hỗ trợ sẽ phản hồi sớm nhất có thể.\n- Bạn có thể tạo thêm ticket nếu cần.`)
         .setFooter({ text: 'Sự hài lòng của bạn là ưu tiên của chúng tôi', iconURL: ticketIcons.heartIcon })
         .setColor('#00FF00')
         .setTimestamp();
@@ -150,16 +150,16 @@ async function handleSelectMenu(interaction, client) {
 
     const actionRow = new ActionRowBuilder().addComponents(closeButton);
 
-    await ticketChannel.send({ content: `${user}`, embeds: [ticketEmbed], components: [actionRow] });
+    await ticketChannel.send({ content: `${user} bạn đợi <@&1313801586916462613> rep  ticket nha.`, embeds: [ticketEmbed], components: [actionRow] });
 
     const embed = new EmbedBuilder()
         .setColor(0x0099ff)
         .setAuthor({ 
             name: "Ticket Đã Được Tạo!", 
             iconURL: ticketIcons.correctIcon,
-            url: "https://discord.gg/xQF9f9yUEM"
+            url: "https://discord.gg/enzlewy"
         })
-        .setDescription(`- Ticket loại **${ticketType}** của bạn đã được tạo.`)
+        .setDescription(`- Ticket **${ticketType}** của bạn đã được tạo.`)
         .addFields(
             { name: 'Kênh Ticket', value: `${ticketChannel.url}` },
             { name: 'Hướng dẫn', value: 'Vui lòng mô tả vấn đề của bạn chi tiết.' }
@@ -200,7 +200,7 @@ async function handleCloseButton(interaction, client) {
             .setAuthor({ 
                 name: "Ticket Đã Đóng!", 
                 iconURL: ticketIcons.correctIcon,
-                url: "https://discord.gg/xQF9f9yUEM"
+                url: "https://discord.gg/enzlewy"
             })
             .setDescription(`- Ticket của bạn đã được đóng.`)
             .setTimestamp()
