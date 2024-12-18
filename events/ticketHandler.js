@@ -54,17 +54,18 @@ async function monitorConfigChanges(client) {
                     const ticketChannel = guild.channels.cache.get(settings.ticketChannelId);
                     if (!ticketChannel) continue;
 
+          
                     const embed = new EmbedBuilder()
                         .setAuthor({
-                            name: "Chào mừng đến với Hỗ Trợ Ticket",
+                            name: "Chào mừng đến với hệ thống hỗ trợ Ticket",
                             iconURL: ticketIcons.mainIcon,
                             url: "https://discord.gg/xQF9f9yUEM"
                         })
-                        .setDescription('- Vui lòng chọn loại ticket từ menu bên dưới để tạo ticket mới.\n\n' +
-                            '**Hướng Dẫn Tạo Ticket:**\n' +
+                        .setDescription('- Vui lòng chọn từ menu bên dưới để tạo ticket mới.\n\n' +
+                            '**Hướng dẫn sử dụng ticket:**\n' +
                             '- Không tạo ticket trống.\n' +
-                            '- Hãy kiên nhẫn chờ phản hồi từ đội ngũ hỗ trợ.')
-                        .setFooter({ text: 'Chúng tôi luôn sẵn sàng giúp đỡ!', iconURL: ticketIcons.modIcon })
+                            '- Vui lòng kiên nhẫn chờ phản hồi từ đội ngũ hỗ trợ.')
+                        .setFooter({ text: 'Chúng tôi luôn sẵn sàng hỗ trợ!', iconURL: ticketIcons.modIcon })
                         .setColor('#00FF00')
                         .setTimestamp();
 
@@ -72,10 +73,10 @@ async function monitorConfigChanges(client) {
                         .setCustomId('select_ticket_type')
                         .setPlaceholder('Chọn loại ticket')
                         .addOptions([
-                            { label: '🆘 Hỗ Trợ', value: 'support' },
-                            { label: '📂 Gợi Ý', value: 'suggestion' },
-                            { label: '💜 Phản Hồi', value: 'feedback' },
-                            { label: '⚠️ Báo Cáo', value: 'report' }
+                            { label: '🆘 Hỗ trợ', value: 'support' },
+                            { label: '📂 Gợi ý', value: 'suggestion' },
+                            { label: '💜 Phản hồi', value: 'feedback' },
+                            { label: '⚠️ Báo cáo', value: 'report' }
                         ]);
 
                     const row = new ActionRowBuilder().addComponents(menu);
@@ -93,7 +94,7 @@ async function monitorConfigChanges(client) {
 }
 
 async function handleSelectMenu(interaction, client) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({ ephemeral: true }); 
 
     const { guild, user, values } = interaction;
     if (!guild || !user) return;
@@ -137,7 +138,7 @@ async function handleSelectMenu(interaction, client) {
             iconURL: ticketIcons.modIcon,
             url: "https://discord.gg/xQF9f9yUEM"
         })
-        .setDescription(`Xin chào ${user}, chào mừng bạn đến với kênh hỗ trợ!\n- Vui lòng cung cấp mô tả chi tiết về vấn đề của bạn.\n- Đội ngũ hỗ trợ sẽ giúp bạn sớm nhất có thể.\n- Bạn có thể tạo thêm ticket nếu cần.`)
+        .setDescription(`Xin chào ${user}, chào mừng bạn đến với hệ thống hỗ trợ!\n- Vui lòng cung cấp mô tả chi tiết về vấn đề của bạn.\n- Đội ngũ hỗ trợ sẽ phản hồi sớm nhất có thể.\n- Bạn có thể tạo thêm ticket nếu cần.`)
         .setFooter({ text: 'Sự hài lòng của bạn là ưu tiên của chúng tôi', iconURL: ticketIcons.heartIcon })
         .setColor('#00FF00')
         .setTimestamp();
@@ -158,13 +159,13 @@ async function handleSelectMenu(interaction, client) {
             iconURL: ticketIcons.correctIcon,
             url: "https://discord.gg/xQF9f9yUEM"
         })
-        .setDescription(`- Ticket loại **${ticketType}** của bạn đã được tạo thành công.`)
+        .setDescription(`- Ticket loại **${ticketType}** của bạn đã được tạo.`)
         .addFields(
             { name: 'Kênh Ticket', value: `${ticketChannel.url}` },
-            { name: 'Hướng Dẫn', value: 'Vui lòng mô tả vấn đề của bạn chi tiết.' }
+            { name: 'Hướng dẫn', value: 'Vui lòng mô tả vấn đề của bạn chi tiết.' }
         )
         .setTimestamp()
-        .setFooter({ text: 'Cảm ơn vì đã liên hệ!', iconURL: ticketIcons.modIcon });
+        .setFooter({ text: 'Cảm ơn bạn đã liên hệ!', iconURL: ticketIcons.modIcon });
 
     await user.send({ content: `Ticket **${ticketType}** của bạn đã được tạo thành công.`, embeds: [embed] });
 
@@ -180,7 +181,7 @@ async function handleCloseButton(interaction, client) {
 
     const ticket = await ticketsCollection.findOne({ id: ticketId });
     if (!ticket) {
-        return interaction.followUp({ content: 'Không tìm thấy ticket. Vui lòng báo cáo cho quản trị viên!', ephemeral: true });
+        return interaction.followUp({ content: 'Không tìm thấy ticket. Vui lòng báo cáo với quản trị viên!', ephemeral: true });
     }
 
     const ticketChannel = guild.channels.cache.get(ticket.channelId);
