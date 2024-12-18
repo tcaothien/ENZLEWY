@@ -1,4 +1,4 @@
-const { ButtonBuilder, ButtonStyle, EmbedBuilder,ActionRowBuilder } = require('discord.js');
+const { ButtonBuilder, ButtonStyle, EmbedBuilder, ActionRowBuilder } = require('discord.js');
 const { saveGiveaway, getGiveaways, deleteGiveaway } = require('../mongodb');
 
 module.exports = (client) => {
@@ -23,48 +23,45 @@ module.exports = (client) => {
         const member = await interaction.guild.members.fetch(interaction.user.id);
         
         if (giveaway.role && !member.roles.cache.has(giveaway.role)) {
-          return interaction.reply({ content: 'You do not have the required role to enter this giveaway.', ephemeral: true })
-            .catch(err => console.error('Failed to reply to interaction:', err));
+          return interaction.reply({ content: 'Bạn không có vai trò cần thiết để tham gia giveaway này.', ephemeral: true })
+            .catch(err => console.error('Không thể trả lời tương tác:', err));
         }
       
         if (!giveaway.entries.includes(interaction.user.id)) {
           giveaway.entries.push(interaction.user.id);
           await saveGiveaway(giveaway);
       
-        
           await interaction.deferUpdate();
       
-         
           await interaction.editReply({ 
             components: [createGiveawayButtons(giveaway)] 
           })
-          .catch(err => console.error('Failed to update interaction:', err));
+          .catch(err => console.error('Không thể cập nhật tương tác:', err));
       
-          
           await interaction.followUp({ 
-            content: 'You have entered the giveaway!', 
+            content: 'Bạn đã tham gia giveaway!', 
             ephemeral: true 
           })
-          .catch(err => console.error('Failed to follow up interaction:', err));
+          .catch(err => console.error('Không thể trả lời thêm cho tương tác:', err));
         } else {
           await interaction.reply({ 
-            content: 'You are already entered in this giveaway.', 
+            content: 'Bạn đã tham gia giveaway này rồi.', 
             ephemeral: true 
           })
-          .catch(err => console.error('Failed to reply to interaction:', err));
+          .catch(err => console.error('Không thể trả lời tương tác:', err));
         }
       }
       else if (interaction.customId === 'view_participants') {
-        const participants = giveaway.entries.map(entry => `<@${entry}>`).join('\n') || '❌ No participants yet.';
+        const participants = giveaway.entries.map(entry => `<@${entry}>`).join('\n') || '❌ Chưa có người tham gia nào.';
       
         const embed = new EmbedBuilder()
-          .setTitle('Giveaway Participants')
+          .setTitle('Danh sách người tham gia Giveaway')
           .setDescription(participants)
           .setColor(0x7289da)
-          .setFooter({ text: `Giveaway ID: ${giveaway.messageId}` });
+          .setFooter({ text: `ID Giveaway: ${giveaway.messageId}` });
       
         await interaction.reply({ embeds: [embed], ephemeral: true })
-          .catch(err => console.error('Failed to reply to interaction:', err));
+          .catch(err => console.error('Không thể trả lời tương tác:', err));
       }
     }
   });
@@ -87,8 +84,8 @@ module.exports = (client) => {
 
         await channel.send({
           embeds: [{
-            title: '🎉 Giveaway Ended! 🎉',
-            description: `Prize: **${giveaway.prize}**\nWinners: ${winners.length > 0 ? winners.join(', ') : 'No valid entries.'}`,
+            title: '🎉 Giveaway Đã Kết Thúc! 🎉',
+            description: `Phần thưởng: **${giveaway.prize}**\nNgười chiến thắng: ${winners.length > 0 ? winners.join(', ') : 'Không có lượt tham gia hợp lệ.'}`,
             color: 0x7289da
           }]
         });
@@ -104,12 +101,12 @@ module.exports = (client) => {
   function createGiveawayButtons(giveaway) {
     const enterButton = new ButtonBuilder()
       .setCustomId('enter_giveaway')
-      .setLabel(`🎉 Enter Giveaway (${giveaway.entries.length})`)
+      .setLabel(`🎉 Tham gia Giveaway (${giveaway.entries.length})`)
       .setStyle(ButtonStyle.Danger);
 
     const viewButton = new ButtonBuilder()
       .setCustomId('view_participants')
-      .setLabel('Participants')
+      .setLabel('Người tham gia')
       .setStyle(ButtonStyle.Secondary);
 
     return new ActionRowBuilder().addComponents(enterButton, viewButton);
